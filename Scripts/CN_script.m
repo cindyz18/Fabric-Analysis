@@ -1,5 +1,5 @@
 % Coordination Number Script
-% clc;close all;clear all
+clc;close all;clear all
 addpath('./../Functions','./../Data')
 
 %% Define Inputs
@@ -27,6 +27,9 @@ labeled = labeled(201:400,201:400,201:400);
 % disp("Coordination number : [Voxel value, Repetitions]")
 % value_counts
 [centroids, part_coords_cell] = get_particle_centroids(labeled_modified, particle_list);
+
+
+
 
 %% Plotting
 % Plotting for large data sizes will take time to run, this is for
