@@ -4,7 +4,7 @@ addpath('./../Functions','./../Data')
 
 %% Define Inputs
 % Define the output file name
-output_file_name = 'UG_0pc_sand_binary_v1';
+output_file_name = 'UG_0pc_sand_binary';
 output_file_location = '../Results/';
 datetime_str = string(datetime("now"),'_ddMMyy_HHmmss');
 file_name_prefix = strcat(output_file_location, output_file_name, datetime_str);

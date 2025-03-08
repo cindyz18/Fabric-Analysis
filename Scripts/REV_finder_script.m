@@ -18,18 +18,6 @@
 % Outputs:
 % - An Excel file ('REVfinder.xlsx') with porosity data.
 % - A PNG plot visualizing porosity vs. REV size.
-%
-% Usage:
-% Simply run the script in MATLAB. Ensure the .mat file is in the same 
-% directory or update the file path accordingly.
-%
-% Dependencies:
-% - Requires 'calculate_porosity_values.m' function.
-% - MATLAB toolbox for 'xlswrite' and 'movsum' functions.
-%
-% Notes:
-% - Avoid modifying the "Avizo_" and "_mat" parts of the filename.
-% - Ensure the Excel file is not open during writing to prevent errors.
 
 clear;clc;
 addpath('./../Functions','./../Data')
@@ -39,6 +27,11 @@ file_name = 'UG_0pc_sand_binary_v1';
 % Define REV sizes and positions
 REV = 3:10:250; % Array of REV sizes, this will need to be chnaged depending on Matrix size
 pos = [350 350 505; 350 650 505; 650 350 505; 650 650 505]; % Coordinate positions in matrix to conduct REV
+
+% Define output file location
+output_file_name = 'UG_0pc_sand_binary_REV_Finder';
+output_file_location = '../Results/';
+file_name_prefix = strcat(output_file_location, output_file_name);
 
 %% Calculating REV value
 tic; % Start timer
@@ -88,9 +81,10 @@ end
 %% Saving results
 disp('Writing results to file')
 % Write results to Excel
+csv_file_name = strcat(file_name_prefix, '.csv');
 col_header = {'REV size', 'Loc_x', 'Loc_y', 'Loc_z', 'Porosity'};
-xlswrite('REVfinder.xlsx', M2, file_name, 'B2');
-xlswrite('REVfinder.xlsx', col_header, file_name, 'B1');
+writecell(col_header, csv_file_name);
+writematrix(M2, csv_file_name, 'WriteMode', 'append');
 
 % Display execution time
 time_taken = toc;
@@ -117,4 +111,4 @@ grid on;
 hold off;
 
 % Save the plot as a PNG file
-saveas(gcf, strcat(file_name, '.png'));
+saveas(gcf, strcat(file_name_prefix, '.png'));
