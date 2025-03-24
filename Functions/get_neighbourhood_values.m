@@ -1,11 +1,12 @@
 function [neighbourhood, neighbourhood_location]= get_neighbourhood_values(P, contact_list)
-% calculate_stored_values computes porosity values using the movsum method
+% This function extracts the 26 neighboring voxel values around each contact point in a 3D matrix.
 % Inputs:
-%   LP: 3D matrix that defines the labeled particles
-%   contact_list: Matrix of the coordinates of the contacts
+%   P: 3D matrix representing labeled particles, where each voxel is assigned a particle label.
+%   contact_list: Nx4 matrix where each row contains a contact label and its (X, Y, Z) coordinates.
+%
 % Outputs:
-%   neighbourhood: Matrix that defines the 26 neighbourhood
-%   neighbourhood_location: Matrix that stores the coordinates for neighbourhood
+%   neighbourhood: Nx26 matrix where each row contains the values of the 26 neighboring voxels for each contact point.
+%   neighbourhood_location: Nx3 matrix storing the (X, Y, Z) coordinates of each contact point.
 
 [a1, a2, a3] = size(P);
 counter = 1;

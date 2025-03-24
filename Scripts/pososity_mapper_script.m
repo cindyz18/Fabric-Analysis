@@ -1,5 +1,4 @@
 %% Porosity Mapper Script
-
 clear;clc;
 addpath('./../Functions','./../Data')
 %% Define Inputs

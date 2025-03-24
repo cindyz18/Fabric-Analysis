@@ -1,12 +1,13 @@
 function [particle_list, contact_list, M] = get_contact_list(P, C)
-% calculate_stored_values computes porosity values using the movsum method
+% This function identifies particles and their contact points from the input matrices P and C.
 % Inputs:
-%   P: 3D matrix that defines the labeled particles
-%   C: 3D matrix that defines the contacts
+%   P: 3D matrix representing labeled particles, where each label corresponds to a unique particle.
+%   C: 3D matrix representing contact points or boundaries between particles, labeled with integer values.
+%
 % Outputs:
-%   particle_list: Matrix of the particles
-%   contact_list: Matrix of the contacts
-%   M: manipulated matrix
+%   particle_list: Nx4 matrix where each row contains the particle label and its (X, Y, Z) coordinates.
+%   contact_list: Mx4 matrix where each row contains the contact label and its (X, Y, Z) coordinates.
+%   M: 3D matrix that combines particles and contacts, where contact points are assigned a specific constant value.
 
 InitalConVoxVal = max(C ,[], "all" ); % Gets the maximum voxel value from the contacts
 ConVoxVal = max(P ,[], "all" ) + 1; % Gets the maximum voxel value from the labeled particles
